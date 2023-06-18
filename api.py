@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import argparse
 import json
 import os
@@ -110,7 +112,9 @@ async def upload_file(
         f.write(file_content)
 
     vs_path = get_vs_path(knowledge_base_id)
+    
     vs_path, loaded_files = local_doc_qa.init_knowledge_vector_store([file_path], vs_path)
+    
     if len(loaded_files) > 0:
         file_status = f"文件 {file.filename} 已上传至新的知识库，并已加载知识库，请开始提问。"
         return BaseResponse(code=200, msg=file_status)
@@ -455,7 +459,7 @@ def api_start(host, port):
 
 
 if __name__ == "__main__":
-    parser.add_argument("--host", type=str, default="0.0.0.0")
+    parser.add_argument("--host", type=str, default="127.0.0.1")
     parser.add_argument("--port", type=int, default=7861)
     # 初始化消息
     args = None

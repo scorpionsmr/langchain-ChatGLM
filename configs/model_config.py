@@ -12,11 +12,13 @@ logging.basicConfig(format=LOG_FORMAT)
 # 在以下字典中修改属性值，以指定本地embedding模型存储位置
 # 如将 "text2vec": "GanymedeNil/text2vec-large-chinese" 修改为 "text2vec": "User/Downloads/text2vec-large-chinese"
 # 此处请写绝对路径
+#"text2vec": "GanymedeNil/text2vec-large-chinese",
 embedding_model_dict = {
     "ernie-tiny": "nghuyong/ernie-3.0-nano-zh",
     "ernie-base": "nghuyong/ernie-3.0-base-zh",
     "text2vec-base": "shibing624/text2vec-base-chinese",
     "text2vec": "GanymedeNil/text2vec-large-chinese",
+    "text2vec_local": "C:\\Users\\tianxiekeji\\.cache\\torch\\sentence_transformers\\GanymedeNil_text2vec-large-chinese",
     "m3e-small": "moka-ai/m3e-small",
     "m3e-base": "moka-ai/m3e-base",
 }
@@ -56,6 +58,12 @@ llm_model_dict = {
         "name": "chatglm-6b",
         "pretrained_model_name": "THUDM/chatglm-6b",
         "local_model_path": None,
+        "provides": "ChatGLM"
+    },
+   "chatglm-6b-local": {
+        "name": "chatglm-6b",
+        "pretrained_model_name": "THUDM/chatglm-6b",
+        "local_model_path": "N:\Code\AI_model\ChatGLM_6B_model",
         "provides": "ChatGLM"
     },
 
@@ -98,7 +106,7 @@ llm_model_dict = {
 }
 
 # LLM 名称
-LLM_MODEL = "chatglm-6b"
+LLM_MODEL = "chatglm-6b-int4"
 # 量化加载8bit 模型
 LOAD_IN_8BIT = False
 # Load the model with bfloat16 precision. Requires NVIDIA Ampere GPU.
